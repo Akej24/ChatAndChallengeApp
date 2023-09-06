@@ -1,3 +1,17 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
+val groupName = "com.akej24"
+val projectVersion = "1.0.0-SNAPSHOT"
+val javaVersion = JavaVersion.VERSION_17
+
+plugins {
+    id("application")
+}
+
+application {
+    mainClass.set("com.akej24.chatAndChallengeApp.ChatAndChallengeApplication")
+}
+
 buildscript {
     val springBootVersion = "3.1.3"
 
@@ -6,13 +20,13 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     }
 }
 
 allprojects {
-    group = "com.akej24"
-    version = "1.0.0-SNAPSHOT"
+    group = groupName
+    version = projectVersion
 
     repositories {
         mavenCentral()
@@ -23,7 +37,18 @@ allprojects {
     apply(plugin = "io.spring.dependency-management")
 
     configure<JavaPluginExtension> {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+    }
+
+    tasks.withType<BootJar> {
+        enabled = false
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom(configurations.annotationProcessor.get())
+        }
     }
 }
+
