@@ -1,13 +1,3 @@
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
-
 dependencies {
 	implementation(project(":application"))
 	implementation("org.springframework.boot:spring-boot-starter-web")
