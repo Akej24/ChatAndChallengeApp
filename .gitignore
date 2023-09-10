@@ -5,6 +5,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Secrets ###
+/infrastructure/src/main/resources/secrets-local.properties
+/infrastructure/src/main/resources/secrets-prod.properties
+
 ### STS ###
 .apt_generated
 .classpath
