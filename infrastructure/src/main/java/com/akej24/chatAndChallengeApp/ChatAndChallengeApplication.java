@@ -9,5 +9,4 @@ public class ChatAndChallengeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ChatAndChallengeApplication.class, args);
 	}
-
 }

@@ -1,3 +1,3 @@
 rootProject.name = "chatAndChallengeApp"
 
-include("api", "infrastructure", "application", "domain")
+include("api", "contracts", "infrastructure", "application", "domain")
