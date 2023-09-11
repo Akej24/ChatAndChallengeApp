@@ -1,6 +1,7 @@
 package com.akej24.chatAndChallengeApp.authentication.login;
 
 import com.akej24.chatAndChallengeApp.authentication.exceptions.UserEmailNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,7 +50,7 @@ class AuthenticationConfig {
         return config.getAuthenticationManager();
     }
 
-    private UserDetails buildUserDetailsFromCredentials(UserCredentials userCredentials) {
+    private UserDetails buildUserDetailsFromCredentials(@Valid UserCredentials userCredentials) {
         return new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {

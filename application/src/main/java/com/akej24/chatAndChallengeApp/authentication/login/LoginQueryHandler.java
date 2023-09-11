@@ -28,7 +28,7 @@ class LoginQueryHandler implements QueryHandler<LoginQuery, LoginResult> {
         log.info("Successfully generated jwt for user, userId: {}", userCredentials.getUserId().getUserId());
 
         jwtRepository.saveForUser(userCredentials.getUserId().getUserId(), jwt.jwt());
-        authenticationTokenContext.authenticateToContext(loginQuery.email(), loginQuery.password());
+        authenticationTokenContext.authenticateToContext(loginQuery.getEmail(), loginQuery.getPassword());
         log.info("User has successfully logged in, userId: {}", userCredentials.getUserId().getUserId());
 
         return LoginResult.from(jwt.jwt());
@@ -42,7 +42,7 @@ class LoginQueryHandler implements QueryHandler<LoginQuery, LoginResult> {
 
     private UserCredentials getUserCredentials(LoginQuery loginQuery) {
         return userCredentialsRepository
-                .findByEmail_Email(loginQuery.email())
+                .findByEmail_Email(loginQuery.getEmail())
                 .orElseThrow(UserEmailNotFoundException::new);
     }
 }
