@@ -4,6 +4,7 @@ import com.akej24.chatAndChallengeApp.authentication.login.value_objects.*;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "users")
-@Getter
+@Getter(AccessLevel.PACKAGE)
 @NoArgsConstructor
 @AllArgsConstructor
 class UserCredentials implements Serializable {
@@ -33,11 +34,12 @@ class UserCredentials implements Serializable {
     @Valid @Embedded
     private Locked locked;
 
-    @Valid @Embedded
-    private Enabled enabled;
-
     boolean isPasswordEqualTo(EncodedPassword givenPassword){
         return this.encodedPassword.equals(givenPassword);
+    }
+
+    boolean isAccountLocked() {
+        return this.locked.isLocked();
     }
 
 }

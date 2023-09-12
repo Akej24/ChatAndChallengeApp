@@ -8,6 +8,5 @@ CREATE TABLE users (
     encoded_password VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL,
     locked BOOLEAN NOT NULL,
-    enabled BOOLEAN NOT NULL,
     PRIMARY KEY(user_id)
 );

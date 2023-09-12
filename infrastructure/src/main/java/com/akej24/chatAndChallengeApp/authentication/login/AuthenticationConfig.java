@@ -83,9 +83,7 @@ class AuthenticationConfig {
             }
 
             @Override
-            public boolean isEnabled() {
-                return userCredentials.getEnabled().isEnabled();
-            }
+            public boolean isEnabled() {return true; }
         };
     }
 }
